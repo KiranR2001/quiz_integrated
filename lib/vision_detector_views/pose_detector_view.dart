@@ -82,33 +82,9 @@ class _PoseDetectorViewState extends State<PoseDetectorView> {
 
         double degree = angle * 180 / pi;
 
-        // Store average value of standing of between 50 and 100 frames
-
-        if (!changer.positionCapture) {
-          frame++;
-          print("frame no :$frame");
-        }
-
-        if (frame >= 50 && frame <= 100) {
-          standing += degree;
-        }
-
-        if (frame > 100 && !changer.positionCapture) {
-          changer.positionCapture = true;
-          standing = standing / 50;
-          changer.poseStanding = standing;
-          print("The average degree of standing is ${standing.abs()}");
-          const snackBar = SnackBar(
-            content: Text('You are ready to take squat'),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((_) {
-            navigateToNextPage();
-          });
-        }
-        print("1");
-        print("1");
-        print("1");
-        print(changer.poseStanding);
+        standing = changer.poseStanding = 0;
+        changer.positionCapture = true;
+        changer.notify();
 
         // check squat
 
@@ -152,12 +128,5 @@ class _PoseDetectorViewState extends State<PoseDetectorView> {
     if (mounted) {
       setState(() {});
     }
-  }
-
-  void navigateToNextPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const front_camera()),
-    );
   }
 }

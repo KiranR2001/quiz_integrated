@@ -91,13 +91,12 @@ class InstructionPage extends StatelessWidget {
                         'Step 3: Stand atleast 1 metre away from the phone',
                     color: Colors.white, // Set the desired color for stepText
                   ),
-                  // Add more steps as needed
-                  // SizedBox(height: 16),
-                  // ElevatedButton(
-                  //   onPressed: () => Get.to(const front_camera()),
-                  //   // Add your logic to handle button press
-                  //   child: Text('Start'),
-                  // ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Get.to(const front_camera()),
+                    // Add your logic to handle button press
+                    child: Text('Continue'),
+                  ),
                 ],
               ),
             ),
@@ -152,14 +151,6 @@ class Integration extends StatelessWidget {
         body: Stack(
           children: [
             InstructionPage(),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: const FractionallySizedBox(
-                alignment: Alignment.topCenter,
-                heightFactor: 0.2,
-                child: PoseDetectorView(),
-              ),
-            )
           ],
         ),
       ),
