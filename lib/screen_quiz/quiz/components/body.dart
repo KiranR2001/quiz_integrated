@@ -10,14 +10,16 @@ import 'progress_bar.dart';
 import 'question_card.dart';
 
 class Body extends StatelessWidget {
-  const Body({
+  Body({
     Key? key,
   }) : super(key: key);
+
+  QuestionController questionController = Get.put(QuestionController());
 
   @override
   Widget build(BuildContext context) {
     // So that we have acccess our controller
-    QuestionController questionController = Get.put(QuestionController());
+    questionController.generateRandomQuestions();
     return Stack(
       children: [
         Container(

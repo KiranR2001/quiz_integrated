@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -23,16 +25,40 @@ class QuestionController extends GetxController
   late PageController _pageController;
   PageController? get pageController => _pageController;
 
-  final List<Question> _questions = sample_data
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index']),
-      )
-      .toList();
-  List<Question> get questions => _questions;
+  List<Question> listRandomQuestions = [];
+
+  void generateRandomQuestions() {
+    List<Map<String, dynamic>> randomQuestions = [];
+    final random = Random();
+    while (randomQuestions.length < 5) {
+      int randomIndex = random.nextInt(sample_data.length);
+      bool found = false;
+      randomQuestions.forEach((element) {
+        if (element["id"] == sample_data[randomIndex]["id"]) {
+          found = true;
+          // break;
+        }
+      });
+      if (!found) {
+        randomQuestions.add(sample_data[randomIndex]);
+      }
+      listRandomQuestions = randomQuestions
+          .map(
+            (question) => Question(
+              id: question['id'],
+              question: question['question'],
+              options: question['options'],
+              answer: question['answer_index'],
+            ),
+          )
+          .toList();
+    }
+  }
+
+  List<Question> get questions {
+    return listRandomQuestions;
+  }
+  // List<Question> get questions => ;
 
   bool _isAnswered = false;
   bool get isAnswered => _isAnswered;
@@ -103,7 +129,7 @@ class QuestionController extends GetxController
   void nextQuestion() {
     checkAns(changer.myQuestion, changer.selectedOpt_quiz);
     Future.delayed(const Duration(seconds: 4), () {
-      if (_questionNumber.value != _questions.length) {
+      if (_questionNumber.value != questions.length) {
         _isAnswered = false;
         _pageController.nextPage(
             duration: const Duration(milliseconds: 250), curve: Curves.ease);
@@ -126,7 +152,7 @@ class QuestionController extends GetxController
         print('Kiran');
         print('Kiran');
         print('Kiran');
-        Get.to(const ScoreScreen());
+        Get.off(const ScoreScreen());
       }
     });
   }

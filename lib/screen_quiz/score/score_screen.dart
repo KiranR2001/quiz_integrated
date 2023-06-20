@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_proj/screens/Games.dart';
+import 'package:flutter_proj/screens/home_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_proj/constants.dart';
 import 'package:flutter_proj/controllers/question_controller.dart';
@@ -63,6 +65,34 @@ class ScoreScreen extends StatelessWidget {
                   ),
                   child: Text(
                     "Restart",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(height: 32), // Adds some spacing between the elements
+              ElevatedButton(
+                onPressed: () {
+                  // Navigation logic goes here
+                  // You can use Get.to() or Get.off() to navigate to the desired page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
+                  ;
+                },
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(kDefaultPadding * 0.75), // 15
+                  decoration: const BoxDecoration(
+                    gradient: kPrimaryGradient,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  child: Text(
+                    "Exit",
                     style: Theme.of(context)
                         .textTheme
                         .headline6
