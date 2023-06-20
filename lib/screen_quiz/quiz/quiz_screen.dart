@@ -24,7 +24,7 @@ class QuizScreen extends StatelessWidget {
                 onPressed: controller.nextQuestion, child: const Text("Skip")),
           ],
         ),
-        body: const Body(),
+        body: Body(),
       ),
     );
   }
