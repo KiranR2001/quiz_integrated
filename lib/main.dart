@@ -102,7 +102,7 @@ Future<void> initHive() async {
 
 class Changer extends ChangeNotifier {
   int btnPressed = -1;
-  bool positionCapture = false;
+  bool positionCapture = true;
   double poseStanding = 0;
 
   int selectedOpt_quiz = -1; //

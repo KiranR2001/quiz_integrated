@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_proj/dino/widgets/hud.dart';
@@ -85,6 +86,7 @@ class PauseMenu extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        Get.to(MainMenu(gameRef));
                         gameRef.overlays.remove(PauseMenu.id);
                         gameRef.overlays.add(MainMenu.id);
                         gameRef.resumeEngine();

@@ -19,7 +19,6 @@ class _PoseDetectorViewDinoState extends State<PoseDetectorViewDino> {
   int i = 1;
   double standing = 0;
   int squatno = 0;
-  int frame = 0;
   bool fixedAngle = false;
   bool squat = false;
 
@@ -84,26 +83,7 @@ class _PoseDetectorViewDinoState extends State<PoseDetectorViewDino> {
         changer.selectedOpt_quiz == 0;
         changer.notify();
 
-        // Store average value of standing of between 50 and 100 frames
-
-        if (!changer.positionCapture) {
-          frame++;
-          print("frame no :$frame");
-        }
-
-        if (frame >= 50 && frame <= 100) {
-          standing += degree;
-        }
-
-        if (frame > 100 && !changer.positionCapture) {
-          changer.positionCapture = true;
-          standing = standing / 50;
-          print("The average degree of standing is ${standing.abs()}");
-          const snackBar = SnackBar(
-            content: Text('you are ready to take squat'),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
+        standing = 0;
 
         // check squat
 
@@ -123,7 +103,7 @@ class _PoseDetectorViewDinoState extends State<PoseDetectorViewDino> {
         }
 
         // check for standing
-  
+
         if (changer.positionCapture && squat) {
           print("CURRENT ANGLE: ${degree.abs()}");
           print("AVERAGE ANGLE: ${changer.poseStanding.abs()}");

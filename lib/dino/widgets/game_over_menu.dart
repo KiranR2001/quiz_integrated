@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_proj/dino/widgets/hud.dart';
@@ -79,6 +80,7 @@ class GameOverMenu extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
+                        Get.to(MainMenu(gameRef));
                         gameRef.overlays.remove(GameOverMenu.id);
                         gameRef.overlays.add(MainMenu.id);
                         gameRef.resumeEngine();

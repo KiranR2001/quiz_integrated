@@ -1,5 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_proj/dino/widgets/instruction_page.dart';
+
 
 import 'widgets/hud.dart';
 import 'game/dino_run.dart';
@@ -48,9 +50,11 @@ class DinoRunApp extends StatelessWidget {
             Hud.id: (_, DinoRun gameRef) => Hud(gameRef),
             GameOverMenu.id: (_, DinoRun gameRef) => GameOverMenu(gameRef),
             SettingsMenu.id: (_, DinoRun gameRef) => SettingsMenu(gameRef),
+            'InstructionPage': (_, DinoRun gameRef) => InstructionPage(gameRef),
+            
           },
           // By default MainMenu overlay will be active.
-          initialActiveOverlays: const [MainMenu.id],
+          initialActiveOverlays: const ['InstructionPage'],
           game: _dinoRun,
         ),
       ),
